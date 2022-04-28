@@ -18,25 +18,23 @@ app.get('/users', (req, res) => {
 
 app.get('/users/:userIndex', (req, res) => {
     const {userIndex} = req.params;
-    if(userIndex < usersList.length){
+    if(usersList[userIndex] !== undefined){
         const usersId = usersList[userIndex-1].id;
         const usersName = usersList[userIndex-1].name;
         res.render('oneOfUsers', {usersId, usersName});
     }else{
-        res.write('This user does not exist');
-        res.end();
+        res.sendStatus(404);
     }
 })
 
 app.get('/cars/:carIndex', (req, res) => {
     const {carIndex} = req.params;
-    if(carIndex < usersList.length){
+    if(carsList[carIndex] !== undefined){
         const carTitle = carsList[carIndex-1].title;
         res.render('oneOfCars', {carTitle});
     }
     else{
-        res.write('This car does not exist');
-        res.end();
+        res.sendStatus(404);
     }
 })
 
