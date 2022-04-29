@@ -18,24 +18,22 @@ app.get('/users', (req, res) => {
 
 app.get('/users/:userIndex', (req, res) => {
     const {userIndex} = req.params;
-    if(usersList[userIndex]){
-        const usersId = usersList[userIndex-1].id;
-        const usersName = usersList[userIndex-1].name;
-        res.render('oneOfUsers', {usersId, usersName});
-    }else{
+    if(!usersList[userIndex]){
         res.sendStatus(404);
     }
+    const usersId = usersList[userIndex].id;
+    const usersName = usersList[userIndex].name;
+    res.render('oneOfUsers', {usersId, usersName});
 })
 
 app.get('/cars/:carIndex', (req, res) => {
     const {carIndex} = req.params;
-    if(carsList[carIndex]){
-        const carTitle = carsList[carIndex-1].title;
-        res.render('oneOfCars', {carTitle});
-    }
-    else{
+    if(!carsList[carIndex]){
         res.sendStatus(404);
+        
     }
+    const carTitle = carsList[carIndex].title;
+    res.render('oneOfCars', {carTitle});
 })
 
 app.get('/cars', (req, res) => {
