@@ -30,7 +30,6 @@ app.get('/cars/:carIndex', (req, res) => {
     const {carIndex} = req.params;
     if(!carsList[carIndex]){
         res.sendStatus(404);
-        
     }
     const carTitle = carsList[carIndex].title;
     res.render('oneOfCars', {carTitle});
