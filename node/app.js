@@ -18,7 +18,7 @@ app.get('/users', (req, res) => {
 
 app.get('/users/:userIndex', (req, res) => {
     const {userIndex} = req.params;
-    if(usersList[userIndex] !== undefined){
+    if(usersList[userIndex]){
         const usersId = usersList[userIndex-1].id;
         const usersName = usersList[userIndex-1].name;
         res.render('oneOfUsers', {usersId, usersName});
@@ -29,7 +29,7 @@ app.get('/users/:userIndex', (req, res) => {
 
 app.get('/cars/:carIndex', (req, res) => {
     const {carIndex} = req.params;
-    if(carsList[carIndex] !== undefined){
+    if(carsList[carIndex]){
         const carTitle = carsList[carIndex-1].title;
         res.render('oneOfCars', {carTitle});
     }
