@@ -31,7 +31,6 @@ module.exports = {
 
     if(!user){
       res.sendStatus(404);
-      return;
     }
 
     res.send(`${user.name} was deleted`);
