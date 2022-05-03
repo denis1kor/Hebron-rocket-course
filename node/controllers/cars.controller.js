@@ -16,7 +16,7 @@ module.exports = {
         const car = DB[carsIndex];
 
         if(!car){
-            res.sendStatus(404);
+            return res.sendStatus(404);
         };
 
         const carTitle = car.title;
@@ -28,7 +28,7 @@ module.exports = {
         const car = DB[carsIndex];
 
         if(!car){
-            res.sendStatus(404);
+            return res.sendStatus(404);
         }
 
         res.send(`${car.title} was deleted`);

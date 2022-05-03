@@ -16,7 +16,7 @@ module.exports = {
     const user = DB[userIndex];
 
     if (!user) {
-      res.sendStatus(404);
+      return res.sendStatus(404);
     };
 
     const usersId = user.id;
@@ -30,7 +30,7 @@ module.exports = {
     console.log(user);
 
     if(!user){
-      res.sendStatus(404);
+      return res.sendStatus(404);
     }
 
     res.send(`${user.name} was deleted`);
