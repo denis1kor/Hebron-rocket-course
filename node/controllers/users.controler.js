@@ -27,7 +27,6 @@ module.exports = {
   deleteUser: (req,res) =>{
     const {userIndex} = req.params;
     const user = DB[userIndex];
-    console.log(user);
 
     if(!user){
       return res.sendStatus(404);
