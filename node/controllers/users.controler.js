@@ -17,11 +17,23 @@ module.exports = {
 
     if (!user) {
       res.sendStatus(404);
-      return;
-    }
+    };
 
     const usersId = user.id;
     const usersName = user.name;
     res.render('oneOfUsers', {usersId, usersName});
+  },
+
+  deleteUser: (req,res) =>{
+    const {userIndex} = req.params;
+    const user = DB[userIndex];
+    console.log(user);
+
+    if(!user){
+      res.sendStatus(404);
+      return;
+    }
+
+    res.send(`${user.name} was deleted`);
   }
-}
+};

@@ -19,4 +19,4 @@ app.use('/cars', carsRouter);
 
 app.listen(PORT, () => {
     console.log('server started');
-})
+});

@@ -17,10 +17,20 @@ module.exports = {
 
         if(!car){
             res.sendStatus(404);
-            return;
+        };
+
+        const carTitle = car.title;
+        res.render('oneOfCars', {carTitle});
+    },
+
+    deleteCar: (req,res) =>{
+        const {carsIndex} = req.params;
+        const car = DB[carsIndex];
+
+        if(!car){
+            res.sendStatus(404);
         }
 
-        const carTitle = car.title
-        res.render('oneOfCars', {carTitle})
+        res.send(`${car.title} was deleted`);
     }
-}
+};
