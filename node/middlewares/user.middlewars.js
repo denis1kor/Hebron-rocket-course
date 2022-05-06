@@ -2,28 +2,27 @@ const User = require('../dataBase/Users.model');
 
 const checkEmailExistance = async (req, res, next) => {
     try {
-      const { email = '' } = req.body;
-  
-      if (!email) {
-        throw new Error('Email is required');
-      }
+        const { email = '' } = req.body;
 
-      if(!email.includes('@'))
-      {
-        throw new Error('Email needs "@" ');
-      }
-  
-      const emailAlredyExist = await User.findOne({ email: email.toLowerCase().trim() });
-  
-      if (emailAlredyExist) {
-        throw new Error('User with this email already present');
-      }
-  
-      next();
+        if (!email) {
+            throw new Error('Email is required');
+        }
+
+        if (!email.includes('@')) {
+            throw new Error('Email needs "@" ');
+        }
+
+        const emailAlredyExist = await User.findOne({ email: email.toLowerCase().trim() });
+
+        if (emailAlredyExist) {
+            throw new Error('User with this email already present');
+        }
+
+        next();
     } catch (error) {
-      res.json(error);
+        res.json(error);
     }
-  }
+}
 
 const checkUserExistence = async (req, res, next) => {
     try {
@@ -38,13 +37,13 @@ const checkUserExistence = async (req, res, next) => {
 
 const checkAge = (req, res, next) => {
     try {
-        const {age} = req.body;
+        const { age } = req.body;
 
-        if(!Number.isInteger(age)){
+        if (!Number.isInteger(age)) {
             throw new Error('Age is NaN');
         }
 
-        if(age > 100 && age < 10){
+        if (age > 100 && age < 10) {
             throw new Error('Age is not valid');
         }
 
@@ -56,9 +55,9 @@ const checkAge = (req, res, next) => {
 
 const checkName = (req, res, next) => {
     try {
-        const {name} = req.body;
+        const { name } = req.body;
 
-        if(!name){
+        if (!name) {
             throw new Error('Name is required');
         }
 
