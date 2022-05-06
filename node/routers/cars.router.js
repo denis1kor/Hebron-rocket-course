@@ -1,14 +1,17 @@
 const {Router} = require('express');
 
 const carsController = require('../controllers/cars.controller');
+const carsMiddlewar = require('../middlewares/car.middlewars')
 const carsRouter = Router();
 
 carsRouter.get('/', carsController.getAllCars);
 
-carsRouter.post('/', carsController.createCar);
+carsRouter.post('/', carsMiddlewar.checkModel, carsMiddlewar.checkYear, carsController.createCar);
 
-carsRouter.get('/:carsIndex', carsController.getCarById);
+carsRouter.patch('/;carsIndex', carsMiddlewar.checkCarExistence, carsController.updateCar)
 
-carsRouter.delete('/:carsIndex', carsController.deleteCar);
+carsRouter.get('/:carsIndex', carsMiddlewar.checkCarExistence, carsController.getCarById);
+
+carsRouter.delete('/:carsIndex', carsMiddlewar.checkCarExistence, carsController.deleteCar);
 
 module.exports = carsRouter;

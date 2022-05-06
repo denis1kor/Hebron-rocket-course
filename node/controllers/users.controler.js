@@ -1,36 +1,35 @@
-const DB = require("../dataBase/users");
+const User = require("../dataBase/Users.model");
 
 module.exports = {
-  getAllUser: (req, res) => {
-    res.render('users', {DB});
+  getAllUser: async (req, res) => {
+    const Users = await User.find();
+
+    res.status(200).json(Users)
   },
 
-  createUser: (req, res) => {
-    DB.push(req.body);
+  createUser: async (req, res) => {
+    const createUser = await User.create(req.body);  
 
-    res.render('users', {DB});
+    res.status(200).json(createUser);
   },
 
-  getUserById: (req, res) => {
+  updateUser: async (req, res) => {
     const { userIndex } = req.params;
-    const user = DB[userIndex];
+    const user = await User.findByIdAndUpdate(userIndex, req.body);
 
-    if (!user) {
-      return res.sendStatus(404);
-    };
-
-    const usersId = user.id;
-    const usersName = user.name;
-    res.render('oneOfUsers', {usersId, usersName});
+    res.status(200).json(user);
   },
 
-  deleteUser: (req,res) =>{
-    const {userIndex} = req.params;
-    const user = DB[userIndex];
+  getUserById: async (req, res) => {
+    const { userIndex } = req.params;
+    const user = await User.findById(userIndex);
 
-    if(!user){
-      return res.sendStatus(404);
-    }
+    res.status(200).json(user);
+  },
+
+  deleteUser: async (req,res) =>{
+    const {userIndex} = req.params;
+    const user = await User.findById(userIndex);
 
     res.send(`${user.name} was deleted`);
   }

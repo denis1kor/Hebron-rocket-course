@@ -1,36 +1,36 @@
-const DB = require('../dataBase/cars');
+const Car = require('../dataBase/Cars.model');
 
 module.exports = {
-    getAllCars: (req, res) => {
-        res.render('cars', {DB});
+    getAllCars: async (req, res) => {
+        const Cars = await Car.find();
+
+        res.status(200).json(Cars);
     },
 
-    createCar: (req, res) => {
-        DB.push(req.body);
+    createCar: async (req, res) => {
+        const createCar = await Car.create(req.body)
 
-        res.render('cars', {DB});
+        res.status(200).json(createCar);
     },
 
-    getCarById: (req, res) => {
+    updateCar: async (req, res) => {
         const {carsIndex} = req.params;
-        const car = DB[carsIndex];
+        const car = await User.findByIdAndUpdate(carsIndex, req.body);
+    
+        res.status(200).json(car);
+      },
 
-        if(!car){
-            return res.sendStatus(404);
-        };
+    getCarById: async (req, res) => {
+        const {carsIndex} = req.params;
+        const car = await Car.findById(carsIndex);
 
-        const carTitle = car.title;
-        res.render('oneOfCars', {carTitle});
+        res.status(200).json(car);
     },
 
-    deleteCar: (req,res) =>{
+    deleteCar: async (req,res) =>{
         const {carsIndex} = req.params;
-        const car = DB[carsIndex];
+        const car = await Car.findById(carsIndex);
 
-        if(!car){
-            return res.sendStatus(404);
-        }
-
-        res.send(`${car.title} was deleted`);
+        res.status(200).send(`${car.title} was deleted`);
     }
 };
