@@ -43,7 +43,7 @@ const checkAge = (req, res, next) => {
             throw new Error('Age is NaN');
         }
 
-        if (age > 100 && age < 10) {
+        if (age > 100 || age < 10) {
             throw new Error('Age is not valid');
         }
 
