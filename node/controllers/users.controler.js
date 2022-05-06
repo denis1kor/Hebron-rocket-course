@@ -15,7 +15,9 @@ module.exports = {
 
   updateUser: async (req, res) => {
     const { userIndex } = req.params;
-    const user = await User.findByIdAndUpdate(userIndex, req.body);
+    const user = await User.findByIdAndUpdate(userIndex, req.body, {
+      new: true
+    });
 
     res.status(200).json(user);
   },

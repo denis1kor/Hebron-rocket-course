@@ -15,7 +15,9 @@ module.exports = {
 
     updateCar: async (req, res) => {
         const {carsIndex} = req.params;
-        const car = await User.findByIdAndUpdate(carsIndex, req.body);
+        const car = await User.findByIdAndUpdate(carsIndex, req.body, {
+            new: true
+        });
     
         res.status(200).json(car);
       },
