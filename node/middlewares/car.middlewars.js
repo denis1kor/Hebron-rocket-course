@@ -33,7 +33,7 @@ const checkYear = (req, res, next) => {
         throw new Error('Year is required');
     }
 
-    if(!year < 1940 || year > 2022){
+    if(year < 1940 || year > 2022){
         throw new Error('Year is not valid');
     }
 
