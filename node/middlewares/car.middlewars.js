@@ -30,11 +30,11 @@ const checkYear = (req, res, next) => {
     const {year} = req.body;
 
     if(!year){
-        throw new Error('Model is required');
+        throw new Error('Year is required');
     }
 
     if(year < 1940 && year > 2022){
-        throw new Error('Model is not valid');
+        throw new Error('Year is not valid');
     }
 
     next();
