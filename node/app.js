@@ -31,7 +31,8 @@ function _notFoundEror(req, res, next) {
   next(new SomeError('Not found', 404));
 }
 
-function _mainErrors(err, req, res) {
+// eslint-disable-next-line no-unused-vars
+function _mainErrors(err, req, res, next) {
   console.log(err);
 
   res

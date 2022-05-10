@@ -7,9 +7,17 @@ const usersRouter = Router();
 
 usersRouter.get('/', usersController.getAllUser);
 
-usersRouter.post('/', usersMiddlewares.checkName, usersMiddlewares.checkEmailExistance, usersMiddlewares.checkAge, usersController.createUser);
+usersRouter.post('/',
+usersMiddlewares.checkName,
+  usersMiddlewares.checkAge,
+  usersMiddlewares.checkEmailExistance,
+  usersController.createUser);
 
-usersRouter.patch('/:userIndex', usersMiddlewares.checkUserExistence, usersController.updateUser);
+usersRouter.patch('/:userIndex',
+  usersMiddlewares.checkAge,
+  usersMiddlewares.checkName,
+  usersMiddlewares.checkUserExistence,
+  usersController.updateUser);
 
 usersRouter.get('/:userIndex', usersMiddlewares.checkUserExistence, usersController.getUserById);
 
