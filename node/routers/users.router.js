@@ -9,19 +9,15 @@ usersRouter.get('/', usersController.getAllUser);
 
 usersRouter.post('/',
   usersMiddlewares.newUserValidator,
-  usersMiddlewares.checkName,
-  usersMiddlewares.checkAge,
   usersMiddlewares.checkEmailExistance,
   usersController.createUser);
 
 usersRouter.patch('/:userIndex',
-  usersMiddlewares.checkAge,
-  usersMiddlewares.checkName,
+  usersMiddlewares.newUserValidator,
   usersMiddlewares.checkUserExistence,
   usersController.updateUser);
 
 usersRouter.get('/:userIndex',
-  usersMiddlewares.newUserValidator,
   usersMiddlewares.checkUserExistence,
   usersController.getUserById);
 
