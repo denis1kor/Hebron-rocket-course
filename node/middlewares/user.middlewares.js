@@ -1,5 +1,6 @@
 const User = require('../dataBase/Users.model');
 const SomeError = require('../errors/SomeEror');
+const {userValidator} = require('../validators')
 
 const checkEmailExistance = async (req, res, next) => {
   try {
@@ -68,8 +69,26 @@ const checkName = (req, res, next) => {
   }
 }
 
+const newUserValidator = (req, res, next) => {
+  try {
+    const { error, value } = userValidator.newUserJoiSchema.validate(req.body);
+
+    if (error) {
+      next(new SomeError(error.details[0].message, 400));
+      return;
+    }
+
+    req.body = value;
+
+    next()
+  } catch (e) {
+    next(e);
+  }
+}
+
 
 module.exports = {
+  newUserValidator,
   checkEmailExistance,
   checkUserExistence,
   checkAge,

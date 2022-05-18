@@ -1,7 +1,7 @@
 const {Router} = require('express');
 
 const carsController = require('../controllers/cars.controller');
-const carsMiddlewar = require('../middlewares/car.middlewars')
+const carsMiddlewar = require('../middlewares/car.middlewares')
 const carsRouter = Router();
 
 carsRouter.get('/', carsController.getAllCars);
